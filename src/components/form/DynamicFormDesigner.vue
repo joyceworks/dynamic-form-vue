@@ -27,16 +27,16 @@
             </td>
 
             <td class="toolbar">
-                <el-button type="text" icon="el-icon-delete" @click="handleClickClear">
+                <a-button type="text" icon="a-icon-delete" @click="handleClickClear">
                     清空
-                </el-button>
-                <el-button type="text" icon="el-icon-view" @click="handleClickPreview">
+                </a-button>
+                <a-button type="text" icon="a-icon-view" @click="handleClickPreview">
                     预览
-                </el-button>
-                <el-button type="text">
+                </a-button>
+                <a-button type="text">
                     <icon type="save"/>
                     保存
-                </el-button>
+                </a-button>
             </td>
 
             <td class="right" rowspan="2">
@@ -51,144 +51,146 @@
                                  style="margin-bottom: 10px;" :key="'span-' + i">
                                 <i class="iconfont iconsort" style="cursor: move"></i>
                                 &nbsp;
-                                <el-input v-model="swimlane.span" style="width: 200px;"
-                                          size="small"></el-input>
+                                <a-input v-model="swimlane.span" style="width: 200px;"
+                                         size="small"></a-input>
                                 &nbsp;
-                                <el-button type="text" icon="el-icon-delete" style="cursor: pointer"
-                                           @click="active.target.swimlanes.splice(i, 1)">
-                                </el-button>
+                                <a-button type="text" icon="a-icon-delete" style="cursor: pointer"
+                                          @click="active.target.swimlanes.splice(i, 1)">
+                                </a-button>
                             </div>
                         </draggable>
-                        <el-button type="text" icon="el-icon-plus"
-                                   @click="active.target.swimlanes.push({span: 50, elements: []})">
+                        <a-button type="text" icon="a-icon-plus"
+                                  @click="active.target.swimlanes.push({span: 50, elements: []})">
                             添加列
-                        </el-button>
+                        </a-button>
                     </div>
                     <div v-else-if="active.target.type === 'input'">
-                        <el-form label-width="60px">
+                        <a-form-model :label-col="{span: 4}" :wrapper-col="{span: 14}">
                             <h4>显示设置</h4>
-                            <el-form-item label="标题">
-                                <el-input v-model="active.target.label" size="small"></el-input>
-                            </el-form-item>
-                            <el-form-item label="水印">
-                                <el-input v-model="active.target.placeholder"
-                                          size="small"></el-input>
-                            </el-form-item>
+                            <a-form-model-item label="标题">
+                                <a-input v-model="active.target.label" size="small"></a-input>
+                            </a-form-model-item>
+                            <a-form-model-item label="水印">
+                                <a-input v-model="active.target.placeholder"
+                                         size="small"></a-input>
+                            </a-form-model-item>
                             <h4>校验设置</h4>
-                            <el-form-item label="必填">
-                                <el-checkbox v-model="active.target.required"></el-checkbox>
-                            </el-form-item>
-                        </el-form>
+                            <a-form-model-item label="必填">
+                                <a-checkbox v-model="active.target.required"></a-checkbox>
+                            </a-form-model-item>
+                        </a-form-model>
                     </div>
                     <div v-else-if="active.target.type === 'textarea'">
-                        <el-form label-width="60px">
+                        <a-form-model :label-col="{span: 4}" :wrapper-col="{span: 14}">
                             <h4>显示设置</h4>
-                            <el-form-item label="标题">
-                                <el-input v-model="active.target.label" size="small"></el-input>
-                            </el-form-item>
-                            <el-form-item label="水印">
-                                <el-input v-model="active.target.placeholder"
-                                          size="small"></el-input>
-                            </el-form-item>
+                            <a-form-model-item label="标题">
+                                <a-input v-model="active.target.label" size="small"></a-input>
+                            </a-form-model-item>
+                            <a-form-model-item label="水印">
+                                <a-input v-model="active.target.placeholder"
+                                         size="small"></a-input>
+                            </a-form-model-item>
                             <h4>校验设置</h4>
-                            <el-form-item label="必填">
-                                <el-checkbox v-model="active.target.required"></el-checkbox>
-                            </el-form-item>
-                        </el-form>
+                            <a-form-model-item label="必填">
+                                <a-checkbox v-model="active.target.required"></a-checkbox>
+                            </a-form-model-item>
+                        </a-form-model>
                     </div>
                     <div v-else-if="active.target.type === 'datetime'">
-                        <el-form label-width="60px">
+                        <a-form-model :label-col="{span: 4}" :wrapper-col="{span: 14}">
                             <h4>显示设置</h4>
-                            <el-form-item label="标题">
-                                <el-input v-model="active.target.label" size="small"></el-input>
-                            </el-form-item>
-                            <el-form-item label="水印">
-                                <el-input v-model="active.target.placeholder"
-                                          size="small"></el-input>
-                            </el-form-item>
+                            <a-form-model-item label="标题">
+                                <a-input v-model="active.target.label" size="small"></a-input>
+                            </a-form-model-item>
+                            <a-form-model-item label="水印">
+                                <a-input v-model="active.target.placeholder"
+                                         size="small"></a-input>
+                            </a-form-model-item>
                             <h4>校验设置</h4>
-                            <el-form-item label="必填">
-                                <el-checkbox v-model="active.target.required"></el-checkbox>
-                            </el-form-item>
-                        </el-form>
+                            <a-form-model-item label="必填">
+                                <a-checkbox v-model="active.target.required"></a-checkbox>
+                            </a-form-model-item>
+                        </a-form-model>
                     </div>
                     <div v-else-if="active.target.type === 'list'">
-                        <el-form label-width="60px">
+                        <a-form-model :label-col="{span: 4}" :wrapper-col="{span: 14}">
                             <h4>显示设置</h4>
-                            <el-form-item label="标题">
-                                <el-input v-model="active.target.label" size="small"></el-input>
-                            </el-form-item>
+                            <a-form-model-item label="标题">
+                                <a-input v-model="active.target.label" size="small"></a-input>
+                            </a-form-model-item>
                             <h4>校验设置</h4>
-                            <el-form-item label="必填">
-                                <el-checkbox v-model="active.target.required"></el-checkbox>
-                            </el-form-item>
-                        </el-form>
+                            <a-form-model-item label="必填">
+                                <a-checkbox v-model="active.target.required"></a-checkbox>
+                            </a-form-model-item>
+                        </a-form-model>
                     </div>
                     <div v-else-if="active.target.type === 'dropdown'">
-                        <el-form label-width="60px">
+                        <a-form-model :label-col="{span: 4}" :wrapper-col="{span: 14}">
                             <h4>显示设置</h4>
-                            <el-form-item label="标题">
-                                <el-input v-model="active.target.label" size="small"></el-input>
-                            </el-form-item>
-                            <el-form-item label="水印">
-                                <el-input v-model="active.target.placeholder"
-                                          size="small"></el-input>
-                            </el-form-item>
+                            <a-form-model-item label="标题">
+                                <a-input v-model="active.target.label" size="small"></a-input>
+                            </a-form-model-item>
+                            <a-form-model-item label="水印">
+                                <a-input v-model="active.target.placeholder"
+                                         size="small"></a-input>
+                            </a-form-model-item>
                             <h4>选项设置</h4>
                             <draggable v-model="active.target.options" handle=".iconsort">
                                 <div v-for="(option, i) in active.target.options"
                                      style="margin-bottom: 10px;" :key="'span-' + i">
                                     <i class="iconfont iconsort" style="cursor: move"></i>
                                     &nbsp;
-                                    <el-input v-model="option.label" style="width: 200px;"
-                                              size="small"></el-input>
+                                    <a-input v-model="option.label" style="width: 180px;"
+                                             size="small"></a-input>
                                     &nbsp;
-                                    <el-button type="text" icon="el-icon-delete"
-                                               style="cursor: pointer"
-                                               @click="active.target.options.splice(i, 1)">
-                                    </el-button>
+                                    <a-button type="text" icon="a-icon-delete"
+                                              style="cursor: pointer" size="small"
+                                              @click="active.target.options.splice(i, 1)">
+                                        <a-icon type="delete"></a-icon>
+                                    </a-button>
                                 </div>
                             </draggable>
-                            <el-button type="text" icon="el-icon-plus"
-                                       @click="active.target.options.push({label: '新选项', value: new Date().getTime()})">
+                            <a-button type="text" icon="a-icon-plus"
+                                      @click="active.target.options.push({label: '新选项', value: new Date().getTime()})">
                                 添加选项
-                            </el-button>
+                            </a-button>
                             <h4>校验设置</h4>
-                            <el-form-item label="必填">
-                                <el-checkbox v-model="active.target.required"></el-checkbox>
-                            </el-form-item>
-                        </el-form>
+                            <a-form-model-item label="必填">
+                                <a-checkbox v-model="active.target.required"></a-checkbox>
+                            </a-form-model-item>
+                        </a-form-model>
                     </div>
                     <div v-else-if="active.target.type === 'checkbox' || active.target.type === 'radio'">
-                        <el-form label-width="60px">
+                        <a-form-model :label-col="{span: 4}" :wrapper-col="{span: 14}">
                             <h4>显示设置</h4>
-                            <el-form-item label="标题">
-                                <el-input v-model="active.target.label" size="small"></el-input>
-                            </el-form-item>
+                            <a-form-model-item label="标题">
+                                <a-input v-model="active.target.label" size="small"></a-input>
+                            </a-form-model-item>
                             <h4>选项设置</h4>
                             <draggable v-model="active.target.options" handle=".iconsort">
                                 <div v-for="(option, i) in active.target.options"
                                      style="margin-bottom: 10px;" :key="'span-' + i">
                                     <i class="iconfont iconsort" style="cursor: move"></i>
                                     &nbsp;
-                                    <el-input v-model="option.label" style="width: 200px;"
-                                              size="small"></el-input>
+                                    <a-input v-model="option.label" style="width: 180px;"
+                                             size="small"></a-input>
                                     &nbsp;
-                                    <el-button type="text" icon="el-icon-delete"
-                                               style="cursor: pointer"
-                                               @click="active.target.options.splice(i, 1)">
-                                    </el-button>
+                                    <a-button type="text" icon="a-icon-delete"
+                                              style="cursor: pointer" size="small"
+                                              @click="active.target.options.splice(i, 1)">
+                                        <a-icon type="delete"></a-icon>
+                                    </a-button>
                                 </div>
                             </draggable>
-                            <el-button type="text" icon="el-icon-plus"
-                                       @click="active.target.options.push({label: '新选项', value: new Date().getTime()})">
+                            <a-button type="text" icon="a-icon-plus"
+                                      @click="active.target.options.push({label: '新选项', value: new Date().getTime()})">
                                 添加选项
-                            </el-button>
+                            </a-button>
                             <h4>校验设置</h4>
-                            <el-form-item label="必填">
-                                <el-checkbox v-model="active.target.required"></el-checkbox>
-                            </el-form-item>
-                        </el-form>
+                            <a-form-model-item label="必填">
+                                <a-checkbox v-model="active.target.required"></a-checkbox>
+                            </a-form-model-item>
+                        </a-form-model>
                     </div>
                     <!--                    {{active.target}}-->
                 </div>
@@ -204,12 +206,12 @@
                           style="height: 100%;" :active="active.target" id="content"
                           @dragstart.stop="handleInstanceDragStart" :data="data"
                           @active="handleInstanceMouseDown"></grid>
-                    <el-dialog title="预览" :visible.sync="previewDialogVisible" width="50%">
+                    <a-modal title="预览" v-model="previewDialogVisible" width="50%">
                         <grid :data="previewData" mode="edit" ref="previewGrid"></grid>
                         <span slot="footer">
-                            <el-button type="primary" @click="handleSaveClick">保存</el-button>
+                            <a-button type="primary" @click="handleSaveClick">保存</a-button>
                         </span>
-                    </el-dialog>
+                    </a-modal>
                 </div>
             </td>
         </tr>
@@ -290,7 +292,7 @@
           let container = this.findContainer(event);
           let indicator = this.initIndicator();
           let refNode = null;
-          for (let childNode of container.childNodes) {
+          for (let childNode of container.children) {
             let top = childNode.getBoundingClientRect().top;
             if (event.clientY < top) {
               refNode = childNode;

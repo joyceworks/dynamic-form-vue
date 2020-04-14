@@ -19,11 +19,11 @@
             <tr v-for="(swimlane, i) in data.swimlanes" :key="i">
                 <td :class="['swimlane', direction]"
                     @mouseup="handleSwimlaneMouseUp($event, swimlane, data)">
-                    <el-button type="text" @click="data.swimlanes.splice(i, 1)">
-                        <icon type="delete" class="delete" v-if="mode === 'edit' && i > 0"/>
-                    </el-button>
+                    <a-button type="link" @click="data.swimlanes.splice(i, 1)"
+                              v-if="mode === 'edit' && i > 0" size="small">
+                        <a-icon type="delete"/>
+                    </a-button>
                     <template v-for="element in swimlane.elements">
-                        <!--suppress HtmlUnknownTag -->
                         <cell :element="element" :key="element.id" :direction="direction"
                               :labeled="i === 0" :inputed="i !== 0 || mode !== 'edit'" :mode="mode"
                               @dragstart="handleDragStart" @mouseup="handleSwimlaneMouseUp"

@@ -1,8 +1,11 @@
 <template>
-    <router-view></router-view>
+    <dynamic-form-designer></dynamic-form-designer>
 </template>
 <script>
+  import DynamicFormDesigner from '../components/form/DynamicFormDesigner';
+
   export default {
+    components: {DynamicFormDesigner},
     data: function() {
       return {};
     },

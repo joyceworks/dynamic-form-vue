@@ -1,8 +1,8 @@
 <template>
     <div :class="{instance: true, active: active === element}"
          @mousedown.stop="handleActive($event, element)">
-        <i class="dragger el-icon-rank"
-           @mousedown.stop="handleDragStart($event, element, swimlane)"></i>
+        <a-icon type="drag" class="dragger"
+                @mousedown.stop="handleDragStart($event, element, swimlane)"></a-icon>
         <span class="id">{{element.id}}</span>
         <grid v-if="element.type === 'grid'" :mode="mode" :data="element"
               @dragstart.stop="handleChildDragStart" :active="active"
@@ -14,10 +14,10 @@
                 <grid :mode="mode" direction="row" :data="element" :active="active"
                       @active.stop="handleChildActive" @dragstart.stop="handleChildDragStart"
                       @mouseup="handleSwimlaneMouseUp($event, element.swimlanes[0], element)"></grid>
-                <el-button type="text" v-if="mode === 'edit'"
-                           @click="addRow(element)">
+                <a-button type="text" v-if="mode === 'edit'"
+                          @click="addRow(element)">
                     添加行
-                </el-button>
+                </a-button>
             </div>
         </form-group>
         <form-group :required="element.required" v-else :warningable="inputed"
@@ -25,44 +25,43 @@
             <span slot="label" v-if="labeled" :title="element.label">{{element.label}}</span>
             <template v-if="inputed">
                 <template v-if="element.type === 'input'">
-                    <el-input slot="element" v-model="element.value" :readonly="mode !== 'edit'"
-                              :placeholder="element.placeholder"></el-input>
+                    <a-input slot="element" v-model="element.value" :read-only="mode !== 'edit'"
+                             :placeholder="element.placeholder"></a-input>
                 </template>
                 <template v-if="element.type === 'textarea'">
-                    <el-input type="textarea" v-model="element.value" slot="element"
-                              :placeholder="element.placeholder"
-                              :readonly="mode !== 'edit'"></el-input>
+                    <a-input type="textarea" v-model="element.value" slot="element"
+                             :placeholder="element.placeholder"
+                             :read-only="mode !== 'edit'"></a-input>
                 </template>
                 <template v-if="element.type === 'datetime'">
-                    <el-date-picker slot="element" :placeholder="element.placeholder"
-                                    style="width: 100%;" v-model="element.value"
-                                    :readonly="mode !== 'edit'"></el-date-picker>
+                    <a-date-picker slot="element" :placeholder="element.placeholder"
+                                   style="width: 100%;" v-model="element.value"
+                                   :read-only="mode !== 'edit'"></a-date-picker>
                 </template>
                 <template v-if="element.type === 'dropdown'">
-                    <el-select style="width: 100%;" :placeholder="element.placeholder"
-                               v-model="element.value" :readonly="mode !== 'edit'" slot="element">
-                        <el-option v-for="item in element.options" :key="item.value"
-                                   :label="item.label"
-                                   :value="item.value">
-                        </el-option>
-                    </el-select>
+                    <a-select style="width: 100%;" :placeholder="element.placeholder"
+                              v-model="element.value" :read-only="mode !== 'edit'" slot="element">
+                        <a-select-option v-for="item in element.options" :key="item.value"
+                                         :value="item.value">
+                            {{item.label}}
+                        </a-select-option>
+                    </a-select>
                 </template>
                 <template v-if="element.type === 'checkbox'">
                     <div slot="element">
-                        <el-checkbox v-for="option in element.options" :label="option.label"
-                                     :key="option.value" v-model="element.value"
-                                     :readonly="mode !== 'edit'">
+                        <a-checkbox v-for="option in element.options" :key="option.value"
+                                    v-model="element.value" :read-only="mode !== 'edit'">
                             {{option.label}}
-                        </el-checkbox>
+                        </a-checkbox>
                     </div>
                 </template>
                 <template v-if="element.type === 'radio'">
                     <div slot="element">
-                        <el-radio v-for="option in element.options" :label="option.label"
-                                  :key="option.value" v-model="element.value"
-                                  :readonly="mode !== 'edit'">
+                        <a-radio v-for="option in element.options" :label="option.label"
+                                 :key="option.value" v-model="element.value"
+                                 :read-only="mode !== 'edit'">
                             {{option.label}}
-                        </el-radio>
+                        </a-radio>
                     </div>
                 </template>
             </template>
@@ -135,7 +134,7 @@
         let json = JSON.stringify(listElement.swimlanes[0].elements);
         let swimlane = {elements: JSON.parse(json)};
         listElement.swimlanes.push(swimlane);
-      }
+      },
     },
   };
 </script>
