@@ -202,12 +202,12 @@
                     <div class="placeholder" v-if="data.swimlanes[0].elements.length === 0">
                         从左侧拖拽或点击来添加字段
                     </div>
-                    <grid @mouseup.stop="handleInstanceMouseUp($event.swimlane.elements, $event.parent)"
-                          style="height: 100%;" :active="active.target" id="content"
-                          @dragstart.stop="handleInstanceDragStart" :data="data"
-                          @active="handleInstanceMouseDown"></grid>
+                    <DynamicForm @mouseup.stop="handleInstanceMouseUp($event.swimlane.elements, $event.parent)"
+                                 style="height: 100%;" :active="active.target" id="content"
+                                 @dragstart.stop="handleInstanceDragStart" :data="data"
+                                 @active="handleInstanceMouseDown"></DynamicForm>
                     <a-modal title="预览" v-model="previewDialogVisible" width="50%">
-                        <grid :data="previewData" mode="edit" ref="previewGrid"></grid>
+                        <DynamicForm :data="previewData" mode="edit" ref="previewGrid"></DynamicForm>
                         <span slot="footer">
                             <a-button type="primary" @click="handleSaveClick">保存</a-button>
                         </span>
@@ -219,7 +219,7 @@
 </template>
 
 <script>
-  import Grid from './Grid';
+  import DynamicForm from './DynamicForm';
   import {clone, getIndex, removeAllChildNodes} from '../../utils/dom';
   import {Icon} from 'ant-design-vue';
 
@@ -450,7 +450,7 @@
         return element;
       },
     },
-    components: {Grid, draggable, Icon},
+    components: {DynamicForm, draggable, Icon},
     mounted() {
       let that = this;
       document.onkeydown = function(event) {

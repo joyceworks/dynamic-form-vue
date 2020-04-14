@@ -39,7 +39,7 @@
   import {Icon} from 'ant-design-vue';
 
   export default {
-    name: 'Grid',
+    name: 'DynamicForm',
     props: {
       data: {
         type: Object,
@@ -146,9 +146,6 @@
     },
     beforeCreate() {
       this.$options.components.Cell = () => import('./Cell.vue');
-    },
-    components: {
-      Icon,
     },
   };
 </script>

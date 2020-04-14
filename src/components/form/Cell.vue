@@ -4,16 +4,16 @@
         <a-icon type="drag" class="dragger"
                 @mousedown.stop="handleDragStart($event, element, swimlane)"></a-icon>
         <span class="id">{{element.id}}</span>
-        <grid v-if="element.type === 'grid'" :mode="mode" :data="element"
-              @dragstart.stop="handleChildDragStart" :active="active"
-              @active.stop="handleChildActive" @mouseup.stop="handleChildSwimlaneMouseUp"></grid>
+        <DynamicForm v-if="element.type === 'grid'" :mode="mode" :data="element"
+                     @dragstart.stop="handleChildDragStart" :active="active"
+                     @active.stop="handleChildActive" @mouseup.stop="handleChildSwimlaneMouseUp"></DynamicForm>
         <form-group v-else-if="element.type === 'list'" class="list" :required="element.required"
                     :warning="element.warning">
             <span slot="label" :title="element.label">{{element.label}}</span>
             <div slot="element">
-                <grid :mode="mode" direction="row" :data="element" :active="active"
-                      @active.stop="handleChildActive" @dragstart.stop="handleChildDragStart"
-                      @mouseup="handleSwimlaneMouseUp($event, element.swimlanes[0], element)"></grid>
+                <DynamicForm :mode="mode" direction="row" :data="element" :active="active"
+                             @active.stop="handleChildActive" @dragstart.stop="handleChildDragStart"
+                             @mouseup="handleSwimlaneMouseUp($event, element.swimlanes[0], element)"></DynamicForm>
                 <a-button type="text" v-if="mode === 'edit'"
                           @click="addRow(element)">
                     添加行
@@ -71,11 +71,11 @@
 
 <script>
   import FormGroup from './FormGroup';
-  import Grid from './Grid';
+  import DynamicForm from './DynamicForm';
 
   export default {
     name: 'Cell',
-    components: {Grid, FormGroup},
+    components: {DynamicForm, FormGroup},
     props: {
       element: {
         type: Object,
