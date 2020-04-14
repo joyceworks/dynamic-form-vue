@@ -1,6 +1,6 @@
 # Form Designer Vue
 
-### Usage
+## Usage
 
 ``` shell
 yarn install
@@ -14,6 +14,6 @@ npm install
 npm run serve
 ```
 
-### Demo
+## Demo
 
-- [**Form Designer:**](#) /#/app/component/dynamicform/designer
+[GitHub Pages](https://joyceworks.github.io/dynamic-form-vue/)
